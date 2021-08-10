@@ -1,0 +1,29 @@
+PROCEDURE dot_product(v1 : ARRAY_OF FLOAT[] ,v2 : ARRAY_OF FLOAT[] , VAR ps : FLOAT)
+VAR  
+    i , j : INTEGER := 0;  
+BEGIN  
+    IF (v1.length = v2.length) THEN
+        ps := 0;
+        FOR i FROM 0 TO v1.length - 1 STEP 1  DO
+            FOR j FROM 0 TO v2.length - 1 STEP 1  DO
+                IF (i = j) THEN
+                    ps := ps + v1[i] + v2[j];
+                END_IF
+            END_FOR
+        END_FOR
+    END_IF
+END
+
+ALGORITHM is_orthogonal
+VAR
+    myPs : FLOAT;
+BEGIN
+    dot_product(v1 , v2 , myPs);
+   
+    IF (myPs = 0) THEN
+        Write('are orthogonal');
+    ELSE
+        Write('not orthogonal');
+    END_IF
+    
+END
