@@ -1,33 +1,45 @@
-FUNCTION dot_product(v1 : ARRAY_OF FLOAT[] ,v2 : ARRAY_OF FLOAT[]) : FLOAT
+FUNCTION dot_product( m : FLOAT , v1 : ARRAY_OF FLOAT[m] ,v2 : ARRAY_OF FLOAT[m]) : FLOAT
 VAR
-    ps : FLOAT
+    i : INTEGER := 0;
+    ps : FLOAT;
 BEGIN
-    IF (v1.length = v2.length) THEN
-        ps := 0;
-        FOR i FROM 0 TO v1.length - 1 STEP 1  DO
-            FOR j FROM 0 TO v2.length - 1 STEP 1  DO
-                IF (i = j) THEN
-                    ps := ps + v1[i] + v2[j];
-                END_IF
-            END_FOR
-        END_FOR
-    END_IF
+    ps:= 0;
+    FOR i FROM 0 TO m - 1 STEP 1  DO
+        ps:= ps + v1[i] + v2[i];
+    END_FOR
     RETURN ps;
 END
 
 ALGORITHM is_orthogonal
 VAR
     myPs : FLOAT;
-    v1 : ARRAY_OF FLOAT[] : {1,2,3};
-    v2 : ARRAY_OF FLOAT[] : {4,5,6};
+    m , n , i , j: FLOAT;
+    v1 : ARRAY_OF FLOAT[m];
+    v2 : ARRAY_OF FLOAT[m];
 BEGIN
+    REPEAT
+        Write('enter number of pairs vectors');
+        Read(n);
+        Write('enter vectors length');
+        Read(m);
+    UNTIL (n >0 AND m > 0 )
 
-    myPs := dot_product(v1 , v2);
-   
-    IF (myPs = 0) THEN
-        Write('are orthogonal');
-    ELSE
-        Write('not orthogonal');
-    END_IF
-    
+    FOR i FROM 0 TO n - 1 STEP 1  DO
+        FOR j FROM 0 TO m - 1 STEP 1  DO          
+            Write('enter v1 ');
+            Write(j);
+            Write(' component');
+            Read(v1[j]);
+            Write('enter v2 ');
+            Write(j);
+            Write(' component');
+            Read(v2[j]); 
+        END_FOR
+        myPs := dot_product( m ,v1 , v2);
+        IF (myPs = 0) THEN
+            Write('are orthogonal');
+        ELSE
+            Write('not orthogonal');
+        END_IF
+    END_FOR
 END
