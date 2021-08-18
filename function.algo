@@ -1,4 +1,4 @@
-FUNCTION dot_product( m : FLOAT , v1 : ARRAY_OF FLOAT[m] ,v2 : ARRAY_OF FLOAT[m]) : FLOAT
+FUNCTION dot_product( m : INTEGER , v1 : ARRAY_OF FLOAT[m] ,v2 : ARRAY_OF FLOAT[m]) : FLOAT
 VAR
     i : INTEGER := 0;
     ps : FLOAT;
@@ -13,7 +13,7 @@ END
 ALGORITHM is_orthogonal
 VAR
     myPs : FLOAT;
-    m , n , i , j: FLOAT;
+    m , n , i , j: INTEGER;
     v1 : ARRAY_OF FLOAT[m];
     v2 : ARRAY_OF FLOAT[m];
 BEGIN
